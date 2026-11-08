@@ -19,12 +19,27 @@
     },
     {
       "name": "maa-onnxruntime",
-      "platform": "windows",
+      "platform": "windows & x64",
       "features": ["directml", "webgpu", "openvino"]
     },
     {
       "name": "maa-onnxruntime",
-      "platform": "linux | osx",
+      "platform": "windows & arm64",
+      "features": ["directml", "webgpu"]
+    },
+    {
+      "name": "maa-onnxruntime",
+      "platform": "linux & x64",
+      "features": ["webgpu", "openvino"]
+    },
+    {
+      "name": "maa-onnxruntime",
+      "platform": "linux & arm64",
+      "features": ["webgpu"]
+    },
+    {
+      "name": "maa-onnxruntime",
+      "platform": "osx",
       "features": ["webgpu"]
     },
     "maa-fastdeploy",
