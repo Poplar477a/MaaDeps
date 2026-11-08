@@ -20,7 +20,7 @@
     {
       "name": "maa-onnxruntime",
       "platform": "windows",
-      "features": ["directml", "webgpu"]
+      "features": ["directml", "webgpu", "openvino"]
     },
     {
       "name": "maa-onnxruntime",

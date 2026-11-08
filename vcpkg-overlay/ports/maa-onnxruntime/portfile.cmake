@@ -71,6 +71,15 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         webgpu    onnxruntime_BUILD_DAWN_SHARED_LIBRARY
 )
 
+# Build the OpenVINO EP with both Intel devices exposed; the device is selected
+# per session through the provider option "device_type".
+if("openvino" IN_LIST FEATURES)
+    list(APPEND FEATURE_OPTIONS
+        "-Donnxruntime_USE_OPENVINO_CPU=ON"
+        "-Donnxruntime_USE_OPENVINO_NPU=ON"
+    )
+endif()
+
 if("cuda" IN_LIST FEATURES)
     vcpkg_find_cuda(OUT_CUDA_TOOLKIT_ROOT cuda_toolkit_root)
     list(APPEND FEATURE_OPTIONS

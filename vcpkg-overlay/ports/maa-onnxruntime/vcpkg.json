@@ -96,7 +96,7 @@
           "default-features": false,
           "features": [
             "cpu",
-            "gpu",
+            "npu",
             "onnx"
           ]
         }
