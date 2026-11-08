@@ -110,6 +110,14 @@ endif()
 
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" BUILD_SHARED)
 
+# ORT 1.29 的 OpenVINO provider 在 DISABLE_SPARSE_TENSORS 下仍引用
+# DataTypeImpl::IsSparseTensorType，必须保留稀疏张量支持才能编译
+if("openvino" IN_LIST FEATURES)
+    set(ORT_SPARSE_TENSORS_OPTION "-Donnxruntime_DISABLE_SPARSE_TENSORS=OFF")
+else()
+    set(ORT_SPARSE_TENSORS_OPTION "-Donnxruntime_DISABLE_SPARSE_TENSORS=ON")
+endif()
+
 # see tools/ci_build/build.py
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}/cmake"
@@ -136,7 +144,7 @@ vcpkg_cmake_configure(
         -Donnxruntime_DISABLE_ABSEIL=OFF
         # 裁剪无用算子与模板实例化 (Maa 仅需视觉/神经网络模型，不需传统机器学习算子与稀疏/FP8类型)
         -Donnxruntime_DISABLE_ML_OPS=ON
-        -Donnxruntime_DISABLE_SPARSE_TENSORS=ON
+        ${ORT_SPARSE_TENSORS_OPTION}
         -Donnxruntime_DISABLE_FLOAT8_TYPES=ON
         -Donnxruntime_BUILD_OPSCHEMA_LIB=OFF
         -Donnxruntime_ENABLE_TRAINING_OPS=OFF
