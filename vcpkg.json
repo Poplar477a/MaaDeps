@@ -9,38 +9,62 @@
     {
       "name": "opencv",
       "default-features": false,
-      "features": ["eigen", "jpeg", "png", "calib3d", "world"]
+      "features": [
+        "eigen",
+        "jpeg",
+        "png",
+        "calib3d",
+        "world"
+      ]
     },
     {
       "$FIXME": "default-features: false for opencv doesn't get propagated to opencv4",
       "name": "opencv4",
       "default-features": false,
-      "features": ["eigen", "jpeg", "png", "calib3d", "world"]
+      "features": [
+        "eigen",
+        "jpeg",
+        "png",
+        "calib3d",
+        "world"
+      ]
     },
     {
       "name": "maa-onnxruntime",
       "platform": "windows & x64",
-      "features": ["directml", "webgpu", "openvino"]
+      "features": [
+        "directml",
+        "webgpu"
+      ]
     },
     {
       "name": "maa-onnxruntime",
       "platform": "windows & arm64",
-      "features": ["directml", "webgpu"]
+      "features": [
+        "directml",
+        "webgpu"
+      ]
     },
     {
       "name": "maa-onnxruntime",
       "platform": "linux & x64",
-      "features": ["webgpu", "openvino"]
+      "features": [
+        "webgpu"
+      ]
     },
     {
       "name": "maa-onnxruntime",
       "platform": "linux & arm64",
-      "features": ["webgpu"]
+      "features": [
+        "webgpu"
+      ]
     },
     {
       "name": "maa-onnxruntime",
       "platform": "osx",
-      "features": ["webgpu"]
+      "features": [
+        "webgpu"
+      ]
     },
     "maa-fastdeploy",
     {
@@ -77,5 +101,26 @@
       "platform": "linux",
       "default-features": false
     }
-  ]
+  ],
+  "features": {
+    "openvino": {
+      "description": "Build the optional Intel OpenVINO acceleration pack (CPU/NPU)",
+      "dependencies": [
+        {
+          "name": "maa-onnxruntime",
+          "platform": "windows & x64",
+          "features": [
+            "openvino"
+          ]
+        },
+        {
+          "name": "maa-onnxruntime",
+          "platform": "linux & x64",
+          "features": [
+            "openvino"
+          ]
+        }
+      ]
+    }
+  }
 }

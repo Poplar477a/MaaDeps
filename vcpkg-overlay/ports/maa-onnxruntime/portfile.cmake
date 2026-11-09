@@ -17,6 +17,7 @@ vcpkg_from_github(
         fix-cmake-cuda.patch
         # fix-cmake-mlas.patch  # dropped due to no usage
         fix-webgpu.patch
+        fix-providers-shared-name.patch
 )
 
 find_program(PROTOC NAMES protoc PATHS "${CURRENT_HOST_INSTALLED_DIR}/tools/protobuf" REQUIRED NO_DEFAULT_PATH NO_CMAKE_PATH)
