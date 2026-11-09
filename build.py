@@ -20,8 +20,23 @@ def vcpkg_bootstrap():
 def vcpkg_install():
     vcpkg.install_manifest(basedir, features=["openvino"] if session.enable_openvino else None)
 
+def print_runner_env():
+    import platform
+    import shutil
+    print("=== runner env ===")
+    print("platform:", platform.platform())
+    print("python:", platform.python_version())
+    print("cpu_count:", os.cpu_count())
+    for path in (".", "/", "C:\\", "D:\\"):
+        try:
+            u = shutil.disk_usage(path)
+            print(f"disk {path}: total={u.total//(1024**3)}GiB free={u.free//(1024**3)}GiB")
+        except Exception:
+            pass
+
 def main():
     session.parse_args(sys.argv)
+    print_runner_env()
 
     vcpkg_bootstrap()
     if session.dry_run:
